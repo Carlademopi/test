@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Element</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background:linear-gradient(96deg, #B6D0F7 1.01%, #EEF4E1 23.7%, #E2C1F9 43.8%, #BFD1F9 58.56%, #FAFCFE 70.48%, #BAE4E2 80.41%, #8C6BE3 100%);
+
+
+        
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 550;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-container {
+            width: 400px;
+            height: 200px;
+            background: rgb(235, 244, 255);
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 30, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .preview-content {
+            text-align: center;
+            font-size: 24px;
+            color: #5517c9;
+        }
+        
+        .preview-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(165, 165, 234);
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out;
+        }
+        
+        .preview-container:hover .preview-hover {
+            opacity: 0.2;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(246, 224, 163, 0.9);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle-animation 0.9s ease-out forwards;
+        }
+        
+        @keyframes sparkle-animation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container" onmousemove="createSparkle(event)" onmouseleave="stopSparkles()">
+        <div class="preview-content">Hover to do some magic ✨</div>
+        <div class="preview-hover"></div>
+    </div>
+
+    <script>
+        function createSparkle(event) {
+            const sparkle = document.createElement("div");
+            sparkle.classList.add("sparkle");
+            document.body.appendChild(sparkle);
+            
+            const rect = event.target.getBoundingClientRect();
+            const x = event.clientX;
+            const y = event.clientY;
+            
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800);
+        }
+        
+        function stopSparkles() {
+            document.querySelectorAll(".sparkle").forEach(sparkle => sparkle.remove());
+        }
+    </script>
+</body>
+</html>
+
