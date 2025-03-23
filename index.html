@@ -27,22 +27,26 @@
         }
         
         .preview-container {
-            width: 400px;
-            height: 200px;
-            background: rgb(235, 244, 255);
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 30, 255, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 2 / 1; /* keeps proportions on all screen sizes */
+    background: rgb(235, 244, 255);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 30, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem;
+}
         
         .preview-content {
             text-align: center;
-            font-size: 24px;
+            font-size: 5vw; /* responsive font size */
             color: #5517c9;
+            line-height: 1.2;
         }
         
         .preview-hover {
